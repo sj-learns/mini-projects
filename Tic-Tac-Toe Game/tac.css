@@ -1,0 +1,126 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family:"Arial";
+    background-color: var(--header-bg);
+    height:48px;
+    width:14rem;
+    margin:19px;
+}
+.header{
+    display:flex;
+}
+#theme{
+    margin: 20px;
+    padding:13px;
+    aspect-ratio: 1/1;
+    background: rgb(31, 30, 30);
+}
+body.dark {
+    --bg: #13070C;
+    --grid-bg: #6B4D57;
+    --cell-bg: #DDC8C4;
+    --header-bg: #D4A96A;
+    --x-color: #13070C;
+    --o-color: #A57F60;
+}
+
+body.light {
+    --bg: #F5EFE6;
+    --grid-bg: #C9A88A;
+    --cell-bg: #FFF8F0;
+    --header-bg: #D4A96A;
+    --x-color: #3D1A00;
+    --o-color: #7A4F2D;
+}
+body {
+    width: 100vw;
+    height: 100dvh;
+    background-color: var(--bg);
+    display: grid;
+    place-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 80vw;
+    max-width: 480px;   /* caps it on tablets/desktop */
+    aspect-ratio: 1 / 1;
+    gap: 8px;
+    background-color: var(--grid-bg);
+    padding: 8px;       /* so gap color shows as border */
+    border-radius: 12px;
+}
+
+.cell {
+    aspect-ratio: 1 / 1;
+    background-color: var(--cell-bg);
+    border-radius: 6px;
+}
+/* when it's X's turn, hovering any empty cell shows a faint X */
+.grid.x-turn .cell:not(.X-done):not(.O-done):hover::before {
+    content: "X";
+    font-family: "Arial";
+    opacity: 0.6;
+    color: #896A67;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    
+    font-size: 8rem;
+}
+
+.grid.o-turn .cell:not(.X-done):not(.O-done):hover::before {
+    content: "O";
+    font-size:8rem;
+    font-family: "Arial";
+    opacity: 0.6;
+    color: #896A67;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    
+    font-size: 8rem;
+}
+.cell.X-done::before {
+    content: "X";
+    font-size: 8rem;
+    color: var(--x-color);
+    font-family:'Arial';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.cell.O-done::before {
+    content: "O";
+    font-size: 8rem;
+    color: var(--o-color);
+    display: flex;
+    font-family:'Arial';
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.cell.O-done.winner::before{
+    color:#6CBEED;
+}
+.cell.X-done.winner::before{
+    color:#AA0000;
+}
+.grid.game-over .cell{
+    pointer-events: none;
+}
