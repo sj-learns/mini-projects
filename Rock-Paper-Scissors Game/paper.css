@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    transition: background-color 0.3s;
+}
+
+/* ── Dark mode variables ── */
+body {
+    --bg: #F6F7EB;
+    --header-bg: #07070A;
+    --header-color: white;
+    --msg-bg: #21FA90;
+    --msg-color: #064d28;
+    --tha-scores:var(--header-bg);
+}
+body.dark {
+    --bg: #0f0f12;
+    --header-bg: #1a1a2e;
+    --header-color: #e0e0e0;
+    --msg-bg: #0f9e5a;
+    --msg-color: #e0ffe8;
+    --tha-scores:white;
+}
+
+/* ── Header ── */
+header {
+    font-family: 'Arial';
+    width: 100%;
+    background-color: var(--header-bg);
+    color: var(--header-color);
+    padding: 12px 1rem 10px;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ── Dark mode toggle ── */
+.dark-toggle {
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 2rem;
+    color: white;
+    padding: 4px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.dark-toggle:hover {
+    border-color: rgba(255,255,255,0.7);
+}
+
+/* ── Choices ── */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 2.5rem 1rem;
+}
+
+.choice {
+    width: clamp(80px, 22vw, 165px);
+    aspect-ratio: 1/1;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.choice:hover {
+    transform: translateY(-5px);
+}
+
+img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 48%;
+}
+
+/* ── Scoreboard ── */
+.scoreboard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin: 1rem 0;
+}
+
+#user-score, #comp-score {
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-family: 'Arial';
+    color: var(--tha-scores);
+}
+#label-you, #label-ai{
+    font-family: 'Arial';
+    color: var(--tha-scores);
+}
+
+/* ── Message ── */
+.msg-container {
+    margin: 1.5rem auto;
+    padding: 0.75rem 1.25rem;
+    border-radius: 1rem;
+    color: var(--msg-color);
+    background-color: var(--msg-bg);
+    max-width: 90%;
+    width: fit-content;
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    transition: background-color 0.3s;
+}
+
+/* ── Mode select + reset ── */
+#mode-reset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1rem 0 2rem;
+    flex-wrap: wrap;
+}
+
+.reset {
+    width: 2.2rem;
+    height: 2.2rem;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Game over state ── */
+.container.game_over .choice {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* ── Mobile tweaks ── */
+@media (max-width: 480px) {
+    .container {
+        gap: 1rem;
+        margin: 1.5rem 0.5rem;
+    }
+
+    .scoreboard {
+        gap: 2rem;
+    }
+
+    #mode-reset {
+        gap: 1rem;
+    }
+}
